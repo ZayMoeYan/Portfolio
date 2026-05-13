@@ -5,7 +5,7 @@ import { Input } from "../components/ui/input";
 import { Textarea } from "../components/ui/textarea";
 import { Button } from "../components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../components/ui/select";
-import { MapPin, Phone, Mail, Clock } from "lucide-react";
+import { MapPin, Phone, Mail, Clock, User } from "lucide-react";
 
 export function Contact() {
   const [formData, setFormData] = useState({
@@ -21,6 +21,13 @@ export function Contact() {
     alert("Thank you for your inquiry! We will contact you shortly.");
     setFormData({ name: "", email: "", phone: "", service: "", message: "" });
   };
+
+  const aboutMe = {
+    name: "Dr. Thurain Moe Myint Win",
+    title: "Breast and reconstructive surgeon",
+    phone: "+95 95055880",
+    email: "thurain.moemyint1@gmail.com"
+  }
 
   const locations = [
     {
@@ -61,88 +68,121 @@ export function Contact() {
       <section className="py-20 bg-[#0d1b2a]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12">
-            {/* Contact Form */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-            >
-              <Card className="bg-[#415a77]/50 border-[#778da9]/20 p-8">
-                <h2 className="text-2xl text-[#e0e1dd] mb-6">Send Us a Message</h2>
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div>
-                    <label className="block text-[#e0e1dd] mb-2">Name *</label>
-                    <Input
-                      required
-                      value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="bg-[#1b263b] border-[#778da9]/30 text-[#e0e1dd] placeholder:text-[#778da9]"
-                      placeholder="Your full name"
-                    />
-                  </div>
+            
+            <div className="grid gap-12" >
+              {/* aboutMe card */}
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+              >
+                <Card className="bg-[#415a77]/50 border-[#778da9]/20 p-8">
+                  <h2 className="text-2xl text-[#e0e1dd] mb-6">Contact Dr. Thurain Moe Myint Win</h2>
+                  <div className="space-y-4">
+                    <div className="flex items-start gap-3">
+                      <User className="text-[#778da9] flex-shrink-0 mt-1" size={20} />
+                      <p className="text-[#778da9]">{aboutMe.name}</p>
+                    </div>
 
-                  <div>
-                    <label className="block text-[#e0e1dd] mb-2">Email *</label>
-                    <Input
-                      type="email"
-                      required
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="bg-[#1b263b] border-[#778da9]/30 text-[#e0e1dd] placeholder:text-[#778da9]"
-                      placeholder="your.email@example.com"
-                    />
-                  </div>
+                    <div className="flex items-center gap-3">
+                      <Phone className="text-[#778da9] flex-shrink-0" size={20} />
+                      <a href={`tel:${aboutMe.phone}`} className="text-[#778da9] hover:text-[#e0e1dd] transition-colors">
+                        {aboutMe.phone}
+                      </a>
+                    </div>
 
-                  <div>
-                    <label className="block text-[#e0e1dd] mb-2">Phone *</label>
-                    <Input
-                      type="tel"
-                      required
-                      value={formData.phone}
-                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className="bg-[#1b263b] border-[#778da9]/30 text-[#e0e1dd] placeholder:text-[#778da9]"
-                      placeholder="+1 (234) 567-8900"
-                    />
+                    <div className="flex items-center gap-3">
+                      <Mail className="text-[#778da9] flex-shrink-0" size={20} />
+                      <a href={`mailto:${aboutMe.email}`} className="text-[#778da9] hover:text-[#e0e1dd] transition-colors">
+                        {aboutMe.email}
+                      </a>
+                    </div>
                   </div>
+                </Card>
+              </motion.div>
 
-                  <div>
-                    <label className="block text-[#e0e1dd] mb-2">Service Interest</label>
-                    <Select value={formData.service} onValueChange={(value) => setFormData({ ...formData, service: value })}>
-                      <SelectTrigger className="bg-[#1b263b] border-[#778da9]/30 text-[#e0e1dd]">
-                        <SelectValue placeholder="Select a service" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="rhinoplasty">Rhinoplasty</SelectItem>
-                        <SelectItem value="facelift">Facelift</SelectItem>
-                        <SelectItem value="blepharoplasty">Blepharoplasty</SelectItem>
-                        <SelectItem value="breast-augmentation">Breast Augmentation</SelectItem>
-                        <SelectItem value="liposuction">Liposuction</SelectItem>
-                        <SelectItem value="tummy-tuck">Tummy Tuck</SelectItem>
-                        <SelectItem value="other">Other</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
+              {/* Contact Form */}
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+              >
+                <Card className="bg-[#415a77]/50 border-[#778da9]/20 p-8">
+                  <h2 className="text-2xl text-[#e0e1dd] mb-6">Send Us a Message</h2>
+                  <form onSubmit={handleSubmit} className="space-y-6">
+                    <div>
+                      <label className="block text-[#e0e1dd] mb-2">Name *</label>
+                      <Input
+                        required
+                        value={formData.name}
+                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                        className="bg-[#1b263b] border-[#778da9]/30 text-[#e0e1dd] placeholder:text-[#778da9]"
+                        placeholder="Your full name"
+                      />
+                    </div>
 
-                  <div>
-                    <label className="block text-[#e0e1dd] mb-2">Message *</label>
-                    <Textarea
-                      required
-                      value={formData.message}
-                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      className="bg-[#1b263b] border-[#778da9]/30 text-[#e0e1dd] placeholder:text-[#778da9]"
-                      placeholder="Tell us about your goals and any questions you have..."
-                      rows={6}
-                    />
-                  </div>
+                    <div>
+                      <label className="block text-[#e0e1dd] mb-2">Email *</label>
+                      <Input
+                        type="email"
+                        required
+                        value={formData.email}
+                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                        className="bg-[#1b263b] border-[#778da9]/30 text-[#e0e1dd] placeholder:text-[#778da9]"
+                        placeholder="your.email@example.com"
+                      />
+                    </div>
 
-                  <Button
-                    type="submit"
-                    className="w-full bg-[#778da9] hover:bg-[#415a77] text-[#e0e1dd] py-6 transition-all duration-300 hover:scale-105"
-                  >
-                    Send Message
-                  </Button>
-                </form>
-              </Card>
-            </motion.div>
+                    <div>
+                      <label className="block text-[#e0e1dd] mb-2">Phone *</label>
+                      <Input
+                        type="tel"
+                        required
+                        value={formData.phone}
+                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                        className="bg-[#1b263b] border-[#778da9]/30 text-[#e0e1dd] placeholder:text-[#778da9]"
+                        placeholder="+1 (234) 567-8900"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-[#e0e1dd] mb-2">Service Interest</label>
+                      <Select value={formData.service} onValueChange={(value) => setFormData({ ...formData, service: value })}>
+                        <SelectTrigger className="bg-[#1b263b] border-[#778da9]/30 text-[#e0e1dd]">
+                          <SelectValue placeholder="Select a service" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="rhinoplasty">Rhinoplasty</SelectItem>
+                          <SelectItem value="facelift">Facelift</SelectItem>
+                          <SelectItem value="blepharoplasty">Blepharoplasty</SelectItem>
+                          <SelectItem value="breast-augmentation">Breast Augmentation</SelectItem>
+                          <SelectItem value="liposuction">Liposuction</SelectItem>
+                          <SelectItem value="tummy-tuck">Tummy Tuck</SelectItem>
+                          <SelectItem value="other">Other</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+
+                    <div>
+                      <label className="block text-[#e0e1dd] mb-2">Message *</label>
+                      <Textarea
+                        required
+                        value={formData.message}
+                        onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                        className="bg-[#1b263b] border-[#778da9]/30 text-[#e0e1dd] placeholder:text-[#778da9]"
+                        placeholder="Tell us about your goals and any questions you have..."
+                        rows={6}
+                      />
+                    </div>
+
+                    <Button
+                      type="submit"
+                      className="w-full bg-[#778da9] hover:bg-[#415a77] text-[#e0e1dd] py-6 transition-all duration-300 hover:scale-105"
+                    >
+                      Send Message
+                    </Button>
+                  </form>
+                </Card>
+              </motion.div>
+            </div>
 
             {/* Contact Info */}
             <motion.div

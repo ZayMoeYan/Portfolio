@@ -45,7 +45,7 @@ export function Header() {
         <div className="flex items-center justify-between h-20">
           <Link to="/" className="flex items-center space-x-2">
             <span className="text-xl sm:text-2xl text-[#e0e1dd] tracking-tight">
-              Dr. Alex Morrison
+              Dr. Thurain Moe Myint Win
             </span>
           </Link>
 

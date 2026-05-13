@@ -38,15 +38,13 @@ export function Home() {
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <motion.div {...fadeInUp}>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl text-[#e0e1dd] mb-6 leading-tight">
-                Dr. Alex Morrison
+              <h1 className="text-2xl sm:text-3xl lg:text-5xl text-[#e0e1dd] mb-6 leading-tight">
+                Dr. Thurain Moe Myint Win
               </h1>
               <p className="text-xl sm:text-2xl text-[#778da9] mb-4">
-                Board-Certified Plastic Surgeon
+                Breast and reconstructive surgeon
               </p>
-              <p className="text-lg text-[#778da9] mb-8 max-w-xl">
-                Precision. Aesthetics. Confidence.
-              </p>
+             
               <div className="flex flex-wrap gap-4">
                 <Link to="/contact">
                   <Button className="bg-[#415a77] hover:bg-[#778da9] text-[#e0e1dd] px-8 py-6 text-lg transition-all duration-300 hover:scale-105 hover:shadow-lg">

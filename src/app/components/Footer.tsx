@@ -8,9 +8,9 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           {/* Brand */}
           <div>
-            <h3 className="text-xl text-[#e0e1dd] mb-4">Dr. Alex Morrison</h3>
+            <h3 className="text-xl text-[#e0e1dd] mb-4">Dr. Thurain Moe Myint Win</h3>
             <p className="text-[#778da9] text-sm leading-relaxed">
-              Board-certified plastic surgeon specializing in aesthetic and reconstructive procedures.
+              Breast and reconstructive surgeon
             </p>
           </div>
 
@@ -85,7 +85,7 @@ export function Footer() {
 
         <div className="border-t border-[#415a77]/30 pt-8">
           <p className="text-center text-[#778da9] text-sm">
-            © {new Date().getFullYear()} Dr. Alex Morrison. All rights reserved.
+            © {new Date().getFullYear()} Dr. Thurain Moe Myint Win. All rights reserved.
           </p>
         </div>
       </div>
