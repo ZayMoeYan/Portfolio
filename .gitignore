@@ -7,13 +7,11 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-# Node modules (ဒီ folder က size အရမ်းကြီးလို့ Git ထဲ ဘယ်တော့မှ မထည့်ရပါ)
 node_modules/
 dist/
 dist-ssr/
 *.local
 
-# Editor folders and files (သင်သုံးတဲ့ Editor အလိုက် မလိုတာတွေ ဖျောက်ဖို့)
 .vscode/*
 !.vscode/extensions.json
 .idea/
@@ -24,12 +22,10 @@ dist-ssr/
 *.sln
 *.sw?
 
-# Environment variables (လုံခြုံရေးအရ အရေးကြီးဆုံးအပိုင်း - Password/Keys တွေပါတတ်လို့)
 .env
 .env.local
 .env.development.local
 .env.test.local
 .env.production.local
 
-# TypeScript
 *.tsbuildinfo

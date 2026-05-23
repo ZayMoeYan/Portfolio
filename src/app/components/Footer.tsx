@@ -3,34 +3,34 @@ import { Facebook, Instagram, Mail, Phone } from "lucide-react";
 
 export function Footer() {
   return (
-    <footer className="bg-[#1b263b] border-t border-[#415a77]/30">
+    <footer className="bg-[#ffffff] border-t border-[#0046FF]/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           {/* Brand */}
           <div>
-            <h3 className="text-xl text-[#e0e1dd] mb-4">Dr. Thurain Moe Myint Win</h3>
-            <p className="text-[#778da9] text-sm leading-relaxed">
+            <h3 className="text-xl text-[#000000] mb-4">Dr. Thurain Moe Myint Win</h3>
+            <p className="text-[#0046FF] text-sm leading-relaxed">
               Breast and reconstructive surgeon
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-lg text-[#e0e1dd] mb-4">Quick Links</h4>
+            <h4 className="text-lg text-[#000000] mb-4">Quick Links</h4>
             <nav className="space-y-2">
-              <Link to="/" className="block text-[#778da9] hover:text-[#e0e1dd] text-sm transition-colors">
+              <Link to="/" className="block text-[#0046FF] hover:text-[#000000] text-sm transition-colors">
                 Home
               </Link>
-              <Link to="/about" className="block text-[#778da9] hover:text-[#e0e1dd] text-sm transition-colors">
+              <Link to="/about" className="block text-[#0046FF] hover:text-[#000000] text-sm transition-colors">
                 About Me
               </Link>
-              <Link to="/services" className="block text-[#778da9] hover:text-[#e0e1dd] text-sm transition-colors">
+              <Link to="/services" className="block text-[#0046FF] hover:text-[#000000] text-sm transition-colors">
                 Services
               </Link>
-              <Link to="/blogs" className="block text-[#778da9] hover:text-[#e0e1dd] text-sm transition-colors">
+              <Link to="/blogs" className="block text-[#0046FF] hover:text-[#000000] text-sm transition-colors">
                 Blogs
               </Link>
-              <Link to="/contact" className="block text-[#778da9] hover:text-[#e0e1dd] text-sm transition-colors">
+              <Link to="/contact" className="block text-[#0046FF] hover:text-[#000000] text-sm transition-colors">
                 Get in Touch
               </Link>
             </nav>
@@ -38,13 +38,13 @@ export function Footer() {
 
           {/* Contact & Social */}
           <div>
-            <h4 className="text-lg text-[#e0e1dd] mb-4">Connect</h4>
+            <h4 className="text-lg text-[#000000] mb-4">Connect</h4>
             <div className="space-y-3 mb-6">
-              <a href="tel:+1234567890" className="flex items-center text-[#778da9] hover:text-[#e0e1dd] text-sm transition-colors">
+              <a href="tel:+1234567890" className="flex items-center text-[#0046FF] hover:text-[#000000] text-sm transition-colors">
                 <Phone size={16} className="mr-2" />
                 +1 (234) 567-8900
               </a>
-              <a href="mailto:contact@drmorrison.com" className="flex items-center text-[#778da9] hover:text-[#e0e1dd] text-sm transition-colors">
+              <a href="mailto:contact@drmorrison.com" className="flex items-center text-[#0046FF] hover:text-[#000000] text-sm transition-colors">
                 <Mail size={16} className="mr-2" />
                 contact@drmorrison.com
               </a>
@@ -54,7 +54,7 @@ export function Footer() {
                 href="https://facebook.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[#778da9] hover:text-[#e0e1dd] transition-colors"
+                className="text-[#0046FF] hover:text-[#000000] transition-colors"
                 aria-label="Facebook"
               >
                 <Facebook size={20} />
@@ -63,7 +63,7 @@ export function Footer() {
                 href="https://instagram.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[#778da9] hover:text-[#e0e1dd] transition-colors"
+                className="text-[#0046FF] hover:text-[#000000] transition-colors"
                 aria-label="Instagram"
               >
                 <Instagram size={20} />
@@ -72,7 +72,7 @@ export function Footer() {
                 href="https://tiktok.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[#778da9] hover:text-[#e0e1dd] transition-colors"
+                className="text-[#0046FF] hover:text-[#000000] transition-colors"
                 aria-label="TikTok"
               >
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
@@ -83,8 +83,8 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-[#415a77]/30 pt-8">
-          <p className="text-center text-[#778da9] text-sm">
+        <div className="border-t border-[#0046FF]/30 pt-8">
+          <p className="text-center text-[#0046FF] text-sm">
             © {new Date().getFullYear()} Dr. Thurain Moe Myint Win. All rights reserved.
           </p>
         </div>

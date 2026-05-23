@@ -11,20 +11,24 @@ html {
   scroll-behavior: smooth;
 }
 
+button {
+  cursor: pointer;
+}
+
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #1b263b;
+  background: #ffffff;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #415a77;
+  background: #0046FF;
   border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #778da9;
+  background: #0046FF;
 }

@@ -26,37 +26,45 @@ export function Home() {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#0d1b2a] via-[#1b263b] to-[#0d1b2a]" />
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-20 left-10 w-72 h-72 bg-[#415a77] rounded-full blur-3xl" />
-          <div className="absolute bottom-20 right-10 w-96 h-96 bg-[#778da9] rounded-full blur-3xl" />
+      <section className="relative overflow-hidden border-b border-black/10 bg-white">
+        <div className="absolute inset-x-0 top-0 h-1 bg-[#0046FF]" />
+        <div className="absolute inset-0 opacity-100">
+          <div className="absolute top-12 left-0 h-72 w-72 -translate-x-1/3 rounded-full bg-black/5 blur-3xl" />
+          <div className="absolute bottom-0 right-0 h-96 w-96 translate-x-1/4 rounded-full bg-[#0046FF]/10 blur-3xl" />
         </div>
         
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <motion.div {...fadeInUp}>
-              <h1 className="text-2xl sm:text-3xl lg:text-5xl text-[#e0e1dd] mb-6 leading-tight">
+        <div className="relative z-10 mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-24">
+          <div className="grid items-center gap-12 lg:grid-cols-2">
+            <motion.div {...fadeInUp} className="max-w-2xl">
+              <p className="mb-4 text-sm font-medium uppercase tracking-[0.22em] text-[#0046FF]">
+                Premium breast and reconstructive surgery
+              </p>
+              <h1 className="mb-6 text-4xl leading-[1.05] tracking-tight text-black sm:text-5xl">
                 Dr. Thurain Moe Myint Win
               </h1>
-              <p className="text-xl sm:text-2xl text-[#778da9] mb-4">
+              <p className="mb-6 max-w-xl text-lg leading-relaxed text-black/75 sm:text-xl">
                 Breast and reconstructive surgeon
               </p>
              
               <div className="flex flex-wrap gap-4">
                 <Link to="/contact">
-                  <Button className="bg-[#415a77] hover:bg-[#778da9] text-[#e0e1dd] px-8 py-6 text-lg transition-all duration-300 hover:scale-105 hover:shadow-lg">
+                  <Button className="rounded-full px-8 py-6 text-base shadow-[0_14px_30px_rgba(0,70,255,0.24)] transition-all duration-300 hover:-translate-y-0.5">
                     Book Consultation
                     <ArrowRight className="ml-2" size={20} />
                   </Button>
                 </Link>
                 <Link to="/services">
-                  <Button variant="outline" className="border-[#778da9] text-[#778da9] hover:bg-[#415a77]/20 px-8 py-6 text-lg transition-all duration-300">
+                  <Button variant="outline" className="rounded-full px-8 py-6 text-base transition-all duration-300 hover:-translate-y-0.5">
                     View Services
                   </Button>
                 </Link>
+              </div>
+              <div className="mt-8 flex flex-wrap gap-3 text-sm text-black/60">
+                <span className="rounded-full border border-black/10 bg-white px-4 py-2 shadow-sm">15+ years experience</span>
+                <span className="rounded-full border border-black/10 bg-white px-4 py-2 shadow-sm">Natural-looking results</span>
+                <span className="rounded-full border border-black/10 bg-white px-4 py-2 shadow-sm">Patient-centered care</span>
               </div>
             </motion.div>
 
@@ -66,12 +74,16 @@ export function Home() {
               transition={{ duration: 0.6 }}
               className="relative"
             >
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+              <div className="relative overflow-hidden rounded-[2rem] border border-black/10 bg-white p-2 shadow-[0_24px_80px_rgba(0,0,0,0.12)]">
                 <img
-                  src="https://images.unsplash.com/photo-1758691463626-0ab959babe00?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwcm9mZXNzaW9uYWwlMjBtZWRpY2FsJTIwZG9jdG9yJTIwcG9ydHJhaXR8ZW58MXx8fHwxNzczODk4MTg0fDA&ixlib=rb-4.1.0&q=80&w=1080"
-                  alt="Dr. Alex Morrison"
-                  className="w-full h-[600px] object-cover"
+                  src="https://i.pinimg.com/736x/7d/be/c0/7dbec043a172b1706712bcebb5cb816e.jpg"
+                  alt="Dr. Thurain Moe Myint Win"
+                  className="h-[520px] w-full rounded-[1.5rem] object-cover sm:h-[620px]"
                 />
+                <div className="absolute inset-x-6 bottom-6 rounded-2xl border border-white/20 bg-black/85 p-4 text-white backdrop-blur-sm">
+                  <p className="text-sm uppercase tracking-[0.2em] text-[#0046FF]">Private consultation</p>
+                  <p className="mt-1 text-lg font-medium">Discreet, precise, and tailored surgical planning</p>
+                </div>
               </div>
             </motion.div>
           </div>
@@ -81,29 +93,29 @@ export function Home() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.6 }}
-            className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-20"
+            className="mt-16 grid grid-cols-1 gap-6 sm:grid-cols-3"
           >
-            <div className="bg-[#1b263b]/80 backdrop-blur-sm rounded-xl p-6 border border-[#415a77]/30">
-              <Award className="text-[#778da9] mb-3" size={32} />
-              <p className="text-3xl text-[#e0e1dd] mb-2">15+</p>
-              <p className="text-[#778da9]">Years Experience</p>
+            <div className="rounded-3xl border border-black/10 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl">
+              <Award className="mb-3 text-[#0046FF]" size={32} />
+              <p className="mb-2 text-3xl font-semibold tracking-tight text-black">15+</p>
+              <p className="text-black/65">Years Experience</p>
             </div>
-            <div className="bg-[#1b263b]/80 backdrop-blur-sm rounded-xl p-6 border border-[#415a77]/30">
-              <Users className="text-[#778da9] mb-3" size={32} />
-              <p className="text-3xl text-[#e0e1dd] mb-2">5000+</p>
-              <p className="text-[#778da9]">Satisfied Patients</p>
+            <div className="rounded-3xl border border-black/10 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl">
+              <Users className="mb-3 text-[#0046FF]" size={32} />
+              <p className="mb-2 text-3xl font-semibold tracking-tight text-black">5000+</p>
+              <p className="text-black/65">Satisfied Patients</p>
             </div>
-            <div className="bg-[#1b263b]/80 backdrop-blur-sm rounded-xl p-6 border border-[#415a77]/30">
-              <Clock className="text-[#778da9] mb-3" size={32} />
-              <p className="text-3xl text-[#e0e1dd] mb-2">98%</p>
-              <p className="text-[#778da9]">Success Rate</p>
+            <div className="rounded-3xl border border-black/10 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl">
+              <Clock className="mb-3 text-[#0046FF]" size={32} />
+              <p className="mb-2 text-3xl font-semibold tracking-tight text-black">98%</p>
+              <p className="text-black/65">Success Rate</p>
             </div>
           </motion.div>
         </div>
       </section>
 
       {/* About Overview */}
-      <section className="py-20 bg-[#1b263b]">
+      <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <motion.div
@@ -115,7 +127,7 @@ export function Home() {
               <img
                 src="https://images.unsplash.com/photo-1638202993928-7267aad84c31?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtZWRpY2FsJTIwcHJvZmVzc2lvbmFsJTIwd29tYW4lMjBkb2N0b3J8ZW58MXx8fHwxNzczODUwMDY1fDA&ixlib=rb-4.1.0&q=80&w=1080"
                 alt="About Dr. Morrison"
-                className="rounded-2xl shadow-xl w-full h-[500px] object-cover"
+                className="h-[500px] w-full rounded-[2rem] object-cover shadow-[0_20px_60px_rgba(0,0,0,0.12)]"
               />
             </motion.div>
 
@@ -125,21 +137,22 @@ export function Home() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <h2 className="text-3xl sm:text-4xl text-[#e0e1dd] mb-6">
+              <p className="mb-3 text-sm font-medium uppercase tracking-[0.18em] text-[#0046FF]">About the practice</p>
+              <h2 className="mb-6 text-3xl tracking-tight text-black sm:text-4xl">
                 Excellence in Plastic Surgery
               </h2>
-              <p className="text-[#778da9] mb-6 leading-relaxed">
+              <p className="mb-6 max-w-2xl leading-relaxed text-black/70">
                 With over 15 years of experience and advanced training from world-renowned institutions, 
                 Dr. Alex Morrison combines surgical precision with artistic vision to deliver exceptional, 
                 natural-looking results.
               </p>
-              <p className="text-[#778da9] mb-8 leading-relaxed">
+              <p className="mb-8 max-w-2xl leading-relaxed text-black/70">
                 Specializing in both aesthetic and reconstructive procedures, Dr. Morrison has helped 
                 thousands of patients achieve their aesthetic goals while maintaining the highest standards 
                 of safety and care.
               </p>
               <Link to="/about">
-                <Button className="bg-[#415a77] hover:bg-[#778da9] text-[#e0e1dd] transition-all duration-300 hover:scale-105">
+                <Button className="rounded-full transition-all duration-300 hover:-translate-y-0.5">
                   Learn More About Dr. Morrison
                   <ArrowRight className="ml-2" size={18} />
                 </Button>
@@ -150,18 +163,19 @@ export function Home() {
       </section>
 
       {/* Services Overview */}
-      <section className="py-20 bg-[#0d1b2a]">
+      <section className="py-24 bg-black/10 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-12"
+            className="mb-12 text-center"
           >
-            <h2 className="text-3xl sm:text-4xl text-[#e0e1dd] mb-4">
+            <p className="mb-3 text-sm font-medium uppercase tracking-[0.18em] text-[#0046FF]">What we offer</p>
+            <h2 className="mb-4 text-3xl tracking-tight text-black sm:text-4xl">
               Our Services
             </h2>
-            <p className="text-[#778da9] max-w-2xl mx-auto">
+            <p className="mx-auto max-w-2xl text-black/75">
               Comprehensive plastic surgery solutions tailored to your unique needs and aesthetic goals.
             </p>
           </motion.div>
@@ -175,13 +189,14 @@ export function Home() {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
               >
-                <Card className="bg-[#415a77]/50 border-[#778da9]/20 p-6 hover:bg-[#415a77] transition-all duration-300 hover:scale-105 hover:shadow-xl h-full">
-                  <div className="text-sm text-[#778da9] mb-2">{service.category}</div>
-                  <h3 className="text-xl text-[#e0e1dd] mb-3">{service.title}</h3>
-                  <p className="text-[#778da9] text-sm leading-relaxed mb-4">
+                <Card className="group h-full border border-white/10 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl">
+                  <div className="mb-4 h-1 w-16 rounded-full bg-[#0046FF]" />
+                  <div className="mb-2 text-sm font-medium uppercase tracking-[0.15em] text-[#0046FF]">{service.category}</div>
+                  <h3 className="mb-3 text-xl font-semibold tracking-tight text-black">{service.title}</h3>
+                  <p className="mb-4 text-sm leading-relaxed text-black/70">
                     {service.description}
                   </p>
-                  <Link to="/services" className="text-[#778da9] hover:text-[#e0e1dd] text-sm inline-flex items-center transition-colors">
+                  <Link to="/services" className="inline-flex items-center text-sm text-[#0046FF] transition-colors hover:text-black">
                     Learn More <ArrowRight size={16} className="ml-1" />
                   </Link>
                 </Card>
@@ -191,7 +206,7 @@ export function Home() {
 
           <div className="text-center">
             <Link to="/services">
-              <Button variant="outline" className="border-[#778da9] text-[#778da9] hover:bg-[#415a77]/20 transition-all duration-300">
+              <Button variant="outline" className="rounded-full transition-all duration-300 hover:-translate-y-0.5">
                 View All Services
               </Button>
             </Link>
@@ -200,18 +215,19 @@ export function Home() {
       </section>
 
       {/* Case Highlights */}
-      <section className="py-20 bg-[#1b263b]">
+      <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-12"
+            className="mb-12 text-center"
           >
-            <h2 className="text-3xl sm:text-4xl text-[#e0e1dd] mb-4">
+            <p className="mb-3 text-sm font-medium uppercase tracking-[0.18em] text-[#0046FF]">Selected case studies</p>
+            <h2 className="mb-4 text-3xl tracking-tight text-black sm:text-4xl">
               Case Highlights
             </h2>
-            <p className="text-[#778da9] max-w-2xl mx-auto">
+            <p className="mx-auto max-w-2xl text-black/70">
               Successfully completed complex procedures with exceptional outcomes.
             </p>
           </motion.div>
@@ -225,13 +241,13 @@ export function Home() {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
               >
-                <Card className="bg-[#415a77]/50 border-[#778da9]/20 p-6 hover:bg-[#415a77] transition-all duration-300 hover:scale-105 h-full">
-                  <div className="aspect-video bg-[#1b263b] rounded-lg mb-4 flex items-center justify-center">
-                    <span className="text-[#778da9] text-sm">Case Study</span>
+                <Card className="h-full border border-black/10 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl">
+                  <div className="mb-4 flex aspect-video items-center justify-center rounded-2xl border border-black/10 bg-black/[0.03]">
+                    <span className="text-sm font-medium uppercase tracking-[0.15em] text-[#0046FF]">Case Study</span>
                   </div>
-                  <div className="text-sm text-[#778da9] mb-2">{highlight.category}</div>
-                  <h3 className="text-lg text-[#e0e1dd] mb-2">{highlight.title}</h3>
-                  <p className="text-[#778da9] text-sm leading-relaxed">
+                  <div className="mb-2 text-sm font-medium uppercase tracking-[0.15em] text-[#0046FF]">{highlight.category}</div>
+                  <h3 className="mb-2 text-lg font-semibold tracking-tight text-black">{highlight.title}</h3>
+                  <p className="text-sm leading-relaxed text-black/70">
                     {highlight.description}
                   </p>
                 </Card>
@@ -242,18 +258,19 @@ export function Home() {
       </section>
 
       {/* Blog Preview */}
-      <section className="py-20 bg-[#0d1b2a]">
+      <section className="py-24 bg-black/10 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-12"
+            className="mb-12 text-center"
           >
-            <h2 className="text-3xl sm:text-4xl text-[#e0e1dd] mb-4">
+            <p className="mb-3 text-sm font-medium uppercase tracking-[0.18em] text-[#0046FF]">Latest insights</p>
+            <h2 className="mb-4 text-3xl tracking-tight text-black sm:text-4xl">
               Latest Insights
             </h2>
-            <p className="text-[#778da9] max-w-2xl mx-auto">
+            <p className="mx-auto max-w-2xl text-black/75">
               Expert advice and educational content about plastic surgery.
             </p>
           </motion.div>
@@ -268,17 +285,17 @@ export function Home() {
                 transition={{ delay: index * 0.1 }}
               >
                 <Link to={`/blogs/${blog.id}`}>
-                  <Card className="bg-[#415a77]/50 border-[#778da9]/20 p-6 hover:bg-[#415a77] transition-all duration-300 hover:scale-105 h-full">
-                    <div className="flex items-center gap-2 text-sm text-[#778da9] mb-3">
+                  <Card className="h-full border border-white/10 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl">
+                    <div className="mb-3 flex items-center gap-2 text-sm font-medium text-[#0046FF]">
                       <span>{blog.category}</span>
                       <span>•</span>
                       <span>{blog.readTime}</span>
                     </div>
-                    <h3 className="text-xl text-[#e0e1dd] mb-3">{blog.title}</h3>
-                    <p className="text-[#778da9] text-sm leading-relaxed mb-4">
+                    <h3 className="mb-3 text-xl font-semibold tracking-tight text-black">{blog.title}</h3>
+                    <p className="mb-4 text-sm leading-relaxed text-black/70">
                       {blog.excerpt}
                     </p>
-                    <div className="text-[#778da9] hover:text-[#e0e1dd] text-sm inline-flex items-center transition-colors">
+                    <div className="inline-flex items-center text-sm text-[#0046FF] transition-colors hover:text-black">
                       Read More <ArrowRight size={16} className="ml-1" />
                     </div>
                   </Card>
@@ -289,7 +306,7 @@ export function Home() {
 
           <div className="text-center">
             <Link to="/blogs">
-              <Button variant="outline" className="border-[#778da9] text-[#778da9] hover:bg-[#415a77]/20 transition-all duration-300">
+              <Button variant="outline" className="rounded-full transition-all duration-300 hover:-translate-y-0.5">
                 View All Articles
               </Button>
             </Link>
@@ -298,27 +315,28 @@ export function Home() {
       </section>
 
       {/* Reviews Section */}
-      <section className="py-20 bg-[#1b263b]">
+      <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-12"
+            className="mb-12 text-center"
           >
-            <h2 className="text-3xl sm:text-4xl text-[#e0e1dd] mb-4">
+            <p className="mb-3 text-sm font-medium uppercase tracking-[0.18em] text-[#0046FF]">Real patient feedback</p>
+            <h2 className="mb-4 text-3xl tracking-tight text-black sm:text-4xl">
               Patient Reviews
             </h2>
-            <p className="text-[#778da9] max-w-2xl mx-auto">
+            <p className="mx-auto max-w-2xl text-black/70">
               Read what our patients have to say about their experience.
             </p>
           </motion.div>
 
           <ReviewsCarousel reviews={reviews} />
 
-          <div className="text-center mt-8">
+          <div className="text-center mt-20">
             <Link to="/reviews">
-              <Button variant="outline" className="border-[#778da9] text-[#778da9] hover:bg-[#415a77]/20 transition-all duration-300">
+              <Button variant="outline" className="rounded-full transition-all duration-300 hover:-translate-y-0.5">
                 View All Reviews
               </Button>
             </Link>
@@ -327,18 +345,19 @@ export function Home() {
       </section>
 
       {/* FAQs Preview */}
-      <section className="py-20 bg-[#0d1b2a]">
+      <section className="py-24 bg-black/10 text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-12"
+            className="mb-12 text-center"
           >
-            <h2 className="text-3xl sm:text-4xl text-[#e0e1dd] mb-4">
+            <p className="mb-3 text-sm font-medium uppercase tracking-[0.18em] text-[#0046FF]">FAQ</p>
+            <h2 className="mb-4 text-3xl tracking-tight text-black sm:text-4xl">
               Frequently Asked Questions
             </h2>
-            <p className="text-[#778da9]">
+            <p className="text-black/75">
               Quick answers to common questions about plastic surgery.
             </p>
           </motion.div>
@@ -348,13 +367,13 @@ export function Home() {
               <AccordionItem
                 key={index}
                 value={`item-${index}`}
-                className="bg-[#415a77]/30 border-[#778da9]/20 rounded-lg px-6"
+                className="rounded-3xl"
               >
-                <AccordionTrigger className="text-[#e0e1dd] hover:text-[#778da9] transition-colors">
+                <AccordionTrigger className="text-black hover:text-[#0046FF] transition-colors">
                   {/* @ts-ignore */}
                   {window.faqs?.[index]?.question || "Loading..."}
                 </AccordionTrigger>
-                <AccordionContent className="text-[#778da9] leading-relaxed">
+                <AccordionContent className="text-black/70 leading-relaxed">
                   {/* @ts-ignore */}
                   {window.faqs?.[index]?.answer || ""}
                 </AccordionContent>
@@ -364,7 +383,7 @@ export function Home() {
 
           <div className="text-center mt-8">
             <Link to="/faqs">
-              <Button variant="outline" className="border-[#778da9] text-[#778da9] hover:bg-[#415a77]/20 transition-all duration-300">
+              <Button variant="outline" className="rounded-full transition-all duration-300 hover:-translate-y-0.5">
                 View All FAQs
               </Button>
             </Link>
@@ -373,18 +392,19 @@ export function Home() {
       </section>
 
       {/* Contact Form */}
-      <section className="py-20 bg-[#1b263b]">
+      <section className="py-24 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-12"
+            className="mb-12 text-center"
           >
-            <h2 className="text-3xl sm:text-4xl text-[#e0e1dd] mb-4">
+            <p className="mb-3 text-sm font-medium uppercase tracking-[0.18em] text-[#0046FF]">Start the conversation</p>
+            <h2 className="mb-4 text-3xl tracking-tight text-black sm:text-4xl">
               Get in Touch
             </h2>
-            <p className="text-[#778da9]">
+            <p className="text-black/70">
               Have questions? Send us a message and we'll get back to you soon.
             </p>
           </motion.div>
@@ -402,7 +422,7 @@ export function Home() {
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 required
-                className="bg-[#0d1b2a] border-[#778da9]/30 text-[#e0e1dd] placeholder:text-[#778da9]"
+                className=""
               />
               <Input
                 type="email"
@@ -410,7 +430,7 @@ export function Home() {
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 required
-                className="bg-[#0d1b2a] border-[#778da9]/30 text-[#e0e1dd] placeholder:text-[#778da9]"
+                className=""
               />
             </div>
             <Textarea
@@ -419,10 +439,10 @@ export function Home() {
               onChange={(e) => setFormData({ ...formData, message: e.target.value })}
               required
               rows={6}
-              className="bg-[#0d1b2a] border-[#778da9]/30 text-[#e0e1dd] placeholder:text-[#778da9]"
+              className=""
             />
             <div className="text-center">
-              <Button type="submit" className="bg-[#415a77] hover:bg-[#778da9] text-[#e0e1dd] px-8 transition-all duration-300 hover:scale-105">
+              <Button type="submit" className="rounded-full px-8 transition-all duration-300 hover:-translate-y-0.5">
                 Send Message
               </Button>
             </div>

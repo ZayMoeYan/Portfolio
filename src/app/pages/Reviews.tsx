@@ -6,19 +6,21 @@ import { ReviewsCarousel } from "../components/ReviewsCarousel";
 
 export function Reviews() {
   return (
-    <div className="min-h-screen pt-20">
+    <div className="min-h-screen bg-white pt-20">
       {/* Hero */}
-      <section className="py-20 bg-gradient-to-br from-[#0d1b2a] via-[#1b263b] to-[#0d1b2a]">
+      <section className="relative overflow-hidden border-b border-black/10 bg-white py-20">
+        <div className="absolute inset-x-0 top-0 h-1 bg-[#0046FF]" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-center"
+            className="mx-auto max-w-3xl text-center"
           >
-            <h1 className="text-4xl sm:text-5xl text-[#e0e1dd] mb-6">
+            <p className="mb-3 text-sm font-medium uppercase tracking-[0.18em] text-[#0046FF]">Patient stories</p>
+            <h1 className="text-4xl sm:text-5xl tracking-tight text-black mb-6">
               Patient Reviews
             </h1>
-            <p className="text-xl text-[#778da9] max-w-3xl mx-auto leading-relaxed">
+            <p className="text-lg sm:text-xl leading-relaxed text-black/70">
               Hear from our satisfied patients about their experience and results.
             </p>
           </motion.div>
@@ -26,23 +28,24 @@ export function Reviews() {
       </section>
 
       {/* Carousel Section */}
-      <section className="py-20 bg-[#0d1b2a]">
+      <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <ReviewsCarousel reviews={reviews} />
         </div>
       </section>
 
       {/* All Reviews Grid */}
-      <section className="py-20 bg-[#1b263b]">
+      <section className="py-24 bg-black/10 text-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-12"
+            className="mb-12 text-center"
           >
-            <h2 className="text-3xl text-[#e0e1dd] mb-4">All Reviews</h2>
-            <p className="text-[#778da9]">
+            <p className="mb-3 text-sm font-medium uppercase tracking-[0.18em] text-[#0046FF]">Verified feedback</p>
+            <h2 className="mb-4 text-3xl tracking-tight text-black">All Reviews</h2>
+            <p className="text-black/75">
               Real experiences from real patients
             </p>
           </motion.div>
@@ -56,25 +59,25 @@ export function Reviews() {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
               >
-                <Card className="bg-[#415a77]/50 border-[#778da9]/20 p-6 h-full">
+                <Card className="h-full border border-white/10 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl">
                   <div className="flex items-center gap-1 mb-4">
                     {[...Array(5)].map((_, i) => (
                       <Star
                         key={i}
                         size={18}
-                        className={i < review.rating ? "fill-[#778da9] text-[#778da9]" : "text-[#778da9]/30"}
+                        className={i < review.rating ? "fill-[#0046FF] text-[#0046FF]" : "text-black/20"}
                       />
                     ))}
                   </div>
 
-                  <p className="text-[#e0e1dd] mb-6 leading-relaxed">
+                  <p className="mb-6 leading-relaxed text-black/75">
                     "{review.comment}"
                   </p>
 
-                  <div className="mt-auto pt-4 border-t border-[#778da9]/20">
-                    <p className="text-[#e0e1dd] font-medium">{review.name}</p>
-                    <p className="text-[#778da9] text-sm">{review.procedure}</p>
-                    <p className="text-[#778da9] text-xs mt-1">
+                  <div className="mt-auto border-t border-black/10 pt-4">
+                    <p className="font-medium text-black">{review.name}</p>
+                    <p className="text-sm text-[#0046FF]">{review.procedure}</p>
+                    <p className="mt-1 text-xs text-black/50">
                       {new Date(review.date).toLocaleDateString()}
                     </p>
                   </div>
@@ -86,7 +89,7 @@ export function Reviews() {
       </section>
 
       {/* Rating Summary */}
-      <section className="py-20 bg-[#0d1b2a]">
+      <section className="py-24 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -94,14 +97,14 @@ export function Reviews() {
             viewport={{ once: true }}
             className="text-center"
           >
-            <Card className="bg-[#415a77]/50 border-[#778da9]/20 p-12">
-              <div className="text-6xl text-[#e0e1dd] mb-4">5.0</div>
+            <Card className="border border-black/10 bg-black/60 p-12 text-white shadow-[0_20px_60px_rgba(0,0,0,0.18)]">
+              <div className="mb-4 text-6xl text-white">5.0</div>
               <div className="flex items-center justify-center gap-2 mb-4">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} size={24} className="fill-[#778da9] text-[#778da9]" />
+                  <Star key={i} size={24} className="fill-[#0046FF] text-[#0046FF]" />
                 ))}
               </div>
-              <p className="text-[#778da9] text-lg">
+              <p className="text-lg text-white/75">
                 Based on {reviews.length} verified patient reviews
               </p>
             </Card>

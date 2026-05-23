@@ -16,19 +16,21 @@ export function Services() {
     : services.filter(s => s.category === selectedCategory);
 
   return (
-    <div className="min-h-screen pt-20">
+    <div className="min-h-screen bg-white pt-20">
       {/* Hero */}
-      <section className="py-20 bg-gradient-to-br from-[#0d1b2a] via-[#1b263b] to-[#0d1b2a]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative overflow-hidden border-b border-black/10 bg-white py-20">
+        <div className="absolute inset-x-0 top-0 h-1 bg-[#0046FF]" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-center"
+            className="mx-auto max-w-3xl text-center"
           >
-            <h1 className="text-4xl sm:text-5xl text-[#e0e1dd] mb-6">
+            <p className="mb-3 text-sm font-medium uppercase tracking-[0.18em] text-[#0046FF]">Our expertise</p>
+            <h1 className="text-4xl sm:text-5xl tracking-tight text-black mb-6">
               Our Services
             </h1>
-            <p className="text-xl text-[#778da9] max-w-3xl mx-auto leading-relaxed">
+            <p className="text-lg sm:text-xl leading-relaxed text-black/70">
               Comprehensive plastic surgery solutions tailored to your unique needs and aesthetic goals.
             </p>
           </motion.div>
@@ -36,18 +38,16 @@ export function Services() {
       </section>
 
       {/* Category Filter */}
-      <section className="py-8 bg-[#1b263b] sticky top-20 z-40 border-b border-[#415a77]/30">
+      <section className="sticky top-20 z-40 border-b border-black/10 bg-white/95 py-6 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-wrap gap-3 justify-center">
+          <div className="flex flex-wrap justify-center gap-3">
             {categories.map((category) => (
               <Button
                 key={category}
                 onClick={() => setSelectedCategory(category)}
                 variant={selectedCategory === category ? "default" : "outline"}
                 className={
-                  selectedCategory === category
-                    ? "bg-[#415a77] hover:bg-[#778da9] text-[#e0e1dd]"
-                    : "border-[#778da9] text-[#778da9] hover:bg-[#415a77]/20"
+                  "rounded-full px-5"
                 }
               >
                 {category}
@@ -58,9 +58,9 @@ export function Services() {
       </section>
 
       {/* Services Grid */}
-      <section className="py-20 bg-[#0d1b2a]">
+      <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-8">
+          <div className="grid gap-8 lg:grid-cols-2">
             {filteredServices.map((service, index) => (
               <motion.div
                 key={service.id}
@@ -68,42 +68,43 @@ export function Services() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
               >
-                <Card className="bg-[#415a77]/50 border-[#778da9]/20 p-8 hover:bg-[#415a77] transition-all duration-300 h-full">
-                  <div className="text-sm text-[#778da9] mb-3">{service.category}</div>
-                  <h2 className="text-2xl text-[#e0e1dd] mb-4">{service.title}</h2>
+                <Card className="h-full border border-black/10 bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl">
+                  <div className="mb-5 h-1 w-16 rounded-full bg-[#0046FF]" />
+                  <div className="mb-3 text-sm font-medium uppercase tracking-[0.15em] text-[#0046FF]">{service.category}</div>
+                  <h2 className="mb-4 text-2xl font-semibold tracking-tight text-black">{service.title}</h2>
                   
-                  <p className="text-[#778da9] mb-4 leading-relaxed">
+                  <p className="mb-4 leading-relaxed text-black/70">
                     {service.description}
                   </p>
 
                   <div className="space-y-4 mb-6">
                     <div className="flex items-start gap-3">
-                      <Info className="text-[#778da9] flex-shrink-0 mt-1" size={20} />
+                      <Info className="mt-1 flex-shrink-0 text-[#0046FF]" size={20} />
                       <div>
-                        <p className="text-[#e0e1dd] text-sm mb-1">Procedure Details</p>
-                        <p className="text-[#778da9] text-sm leading-relaxed">{service.details}</p>
+                        <p className="mb-1 text-sm font-medium text-black">Procedure Details</p>
+                        <p className="text-sm leading-relaxed text-black/70">{service.details}</p>
                       </div>
                     </div>
 
                     <div className="flex items-start gap-3">
-                      <Clock className="text-[#778da9] flex-shrink-0 mt-1" size={20} />
+                      <Clock className="mt-1 flex-shrink-0 text-[#0046FF]" size={20} />
                       <div>
-                        <p className="text-[#e0e1dd] text-sm mb-1">Recovery Time</p>
-                        <p className="text-[#778da9] text-sm">{service.recovery}</p>
+                        <p className="mb-1 text-sm font-medium text-black">Recovery Time</p>
+                        <p className="text-sm text-black/70">{service.recovery}</p>
                       </div>
                     </div>
 
                     <div className="flex items-start gap-3">
-                      <AlertCircle className="text-[#778da9] flex-shrink-0 mt-1" size={20} />
+                      <AlertCircle className="mt-1 flex-shrink-0 text-[#0046FF]" size={20} />
                       <div>
-                        <p className="text-[#e0e1dd] text-sm mb-1">Potential Risks</p>
-                        <p className="text-[#778da9] text-sm leading-relaxed">{service.risks}</p>
+                        <p className="mb-1 text-sm font-medium text-black">Potential Risks</p>
+                        <p className="text-sm leading-relaxed text-black/70">{service.risks}</p>
                       </div>
                     </div>
                   </div>
 
                   <Link to="/contact">
-                    <Button className="w-full bg-[#1b263b] hover:bg-[#778da9] text-[#e0e1dd] transition-all duration-300">
+                    <Button className="w-full rounded-full transition-all duration-300 hover:-translate-y-0.5">
                       Schedule Consultation
                     </Button>
                   </Link>
@@ -115,21 +116,22 @@ export function Services() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-[#1b263b]">
+      <section className="py-24 bg-black/10 text-black">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl text-[#e0e1dd] mb-6">
+            <p className="mb-3 text-sm font-medium uppercase tracking-[0.18em] text-[#0046FF]">Ready when you are</p>
+            <h2 className="text-3xl tracking-tight text-black mb-6">
               Ready to Start Your Journey?
             </h2>
-            <p className="text-[#778da9] mb-8 leading-relaxed">
+            <p className="mb-8 leading-relaxed text-black/75">
               Schedule a consultation to discuss your goals and learn more about our procedures.
             </p>
             <Link to="/contact">
-              <Button className="bg-[#415a77] hover:bg-[#778da9] text-[#e0e1dd] px-8 py-6 text-lg transition-all duration-300 hover:scale-105">
+              <Button className="rounded-full px-8 py-6 text-lg transition-all duration-300 hover:-translate-y-0.5">
                 Book Consultation
               </Button>
             </Link>

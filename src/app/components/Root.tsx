@@ -5,7 +5,7 @@ import { ScrollToTop } from "./ScrollToTop";
 
 export function Root() {
   return (
-    <div className="min-h-screen bg-[#0d1b2a]">
+    <div className="min-h-screen bg-[#ffffff]">
       <ScrollToTop />
       <Header />
       <main>
