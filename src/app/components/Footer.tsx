@@ -1,6 +1,13 @@
 import { Link } from "react-router";
 import { Facebook, Instagram, Mail, Phone } from "lucide-react";
 
+const quickLinks = [
+  { path: "/", label: "Home" },
+  { path: "/about", label: "About Me" },
+  { path: "/services", label: "Services" },
+  { path: "/contact", label: "Get in Touch" },
+];
+
 export function Footer() {
   return (
     <footer className="bg-[#ffffff] border-t border-[#0046FF]/30">
@@ -18,21 +25,15 @@ export function Footer() {
           <div>
             <h4 className="text-lg text-[#000000] mb-4">Quick Links</h4>
             <nav className="space-y-2">
-              <Link to="/" className="block text-[#0046FF] hover:text-[#000000] text-sm transition-colors">
-                Home
-              </Link>
-              <Link to="/about" className="block text-[#0046FF] hover:text-[#000000] text-sm transition-colors">
-                About Me
-              </Link>
-              <Link to="/services" className="block text-[#0046FF] hover:text-[#000000] text-sm transition-colors">
-                Services
-              </Link>
-              <Link to="/blogs" className="block text-[#0046FF] hover:text-[#000000] text-sm transition-colors">
-                Blogs
-              </Link>
-              <Link to="/contact" className="block text-[#0046FF] hover:text-[#000000] text-sm transition-colors">
-                Get in Touch
-              </Link>
+              {quickLinks.map((link) => (
+                <Link
+                  key={link.path}
+                  to={link.path}
+                  className="block text-[#0046FF] hover:text-[#000000] text-sm transition-colors"
+                >
+                  {link.label}
+                </Link>
+              ))}
             </nav>
           </div>
 

@@ -24,10 +24,10 @@ export function Header() {
     { path: "/", label: "Home" },
     { path: "/about", label: "About Me" },
     { path: "/services", label: "Services" },
-    { path: "/blogs", label: "Blogs" },
+    // { path: "/blogs", label: "Blogs" },
     { path: "/reviews", label: "Reviews" },
     { path: "/contact", label: "Get in Touch" },
-    { path: "/faqs", label: "FAQs" },
+    // { path: "/faqs", label: "FAQs" },
   ];
 
   const isActive = (path: string) => {

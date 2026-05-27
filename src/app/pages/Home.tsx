@@ -108,7 +108,7 @@ export function Home() {
             <div className="rounded-3xl border border-black/10 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl">
               <Clock className="mb-3 text-[#0046FF]" size={32} />
               <p className="mb-2 text-3xl font-semibold tracking-tight text-black">98%</p>
-              <p className="text-black/65">Success Rate</p>
+              <p className="text-black/65">Customer Satisfaction Rate</p>
             </div>
           </motion.div>
         </div>
@@ -345,7 +345,7 @@ export function Home() {
       </section>
 
       {/* FAQs Preview */}
-      <section className="py-24 bg-black/10 text-white">
+      {/* <section className="py-24 bg-black/10 text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -370,11 +370,11 @@ export function Home() {
                 className="rounded-3xl"
               >
                 <AccordionTrigger className="text-black hover:text-[#0046FF] transition-colors">
-                  {/* @ts-ignore */}
+                
                   {window.faqs?.[index]?.question || "Loading..."}
                 </AccordionTrigger>
                 <AccordionContent className="text-black/70 leading-relaxed">
-                  {/* @ts-ignore */}
+                  
                   {window.faqs?.[index]?.answer || ""}
                 </AccordionContent>
               </AccordionItem>
@@ -389,10 +389,10 @@ export function Home() {
             </Link>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Contact Form */}
-      <section className="py-24 bg-white">
+      <section className="py-24 bg-black/10">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -454,24 +454,24 @@ export function Home() {
 }
 
 // Make FAQs available for preview
-if (typeof window !== "undefined") {
-  // @ts-ignore
-  window.faqs = [
-    {
-      question: "How do I know if I'm a good candidate for plastic surgery?",
-      answer: "Good candidates are in good overall health, have realistic expectations, and are motivated to improve their appearance. During your consultation, we'll evaluate your medical history, discuss your goals, and determine if surgery is right for you.",
-    },
-    {
-      question: "How long does surgery typically take?",
-      answer: "Surgery duration varies by procedure. Simple procedures like eyelid surgery may take 1-2 hours, while more complex surgeries like a facelift or tummy tuck can take 3-5 hours.",
-    },
-    {
-      question: "How long is the recovery period?",
-      answer: "Recovery varies by procedure. Minor procedures may require only a few days off work, while major surgeries might need 2-3 weeks. We provide detailed recovery instructions and timeline expectations.",
-    },
-    {
-      question: "When will I see my final results?",
-      answer: "Initial results are visible once swelling subsides, usually within a few weeks. However, final results can take 6-12 months as tissues settle and scars mature.",
-    },
-  ];
-}
+// if (typeof window !== "undefined") {
+//   // @ts-ignore
+//   window.faqs = [
+//     {
+//       question: "How do I know if I'm a good candidate for plastic surgery?",
+//       answer: "Good candidates are in good overall health, have realistic expectations, and are motivated to improve their appearance. During your consultation, we'll evaluate your medical history, discuss your goals, and determine if surgery is right for you.",
+//     },
+//     {
+//       question: "How long does surgery typically take?",
+//       answer: "Surgery duration varies by procedure. Simple procedures like eyelid surgery may take 1-2 hours, while more complex surgeries like a facelift or tummy tuck can take 3-5 hours.",
+//     },
+//     {
+//       question: "How long is the recovery period?",
+//       answer: "Recovery varies by procedure. Minor procedures may require only a few days off work, while major surgeries might need 2-3 weeks. We provide detailed recovery instructions and timeline expectations.",
+//     },
+//     {
+//       question: "When will I see my final results?",
+//       answer: "Initial results are visible once swelling subsides, usually within a few weeks. However, final results can take 6-12 months as tissues settle and scars mature.",
+//     },
+//   ];
+// }
