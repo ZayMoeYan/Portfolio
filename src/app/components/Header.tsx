@@ -2,8 +2,10 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
+import { useCMS } from "../../hooks/useCMS";
 
 export function Header() {
+  const { data: settings } = useCMS("settings");
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
@@ -45,7 +47,7 @@ export function Header() {
         <div className="flex items-center justify-between h-20">
           <Link to="/" className="flex items-center space-x-2">
             <span className="text-xl sm:text-2xl text-[#000000] tracking-tight">
-              Dr. Thurain Moe Myint Win
+              {settings.doctor.name}
             </span>
           </Link>
 

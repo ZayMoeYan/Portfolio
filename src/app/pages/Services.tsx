@@ -1,19 +1,20 @@
 import { useState } from "react";
 import { motion } from "motion/react";
-import { services } from "../data/content";
 import { Card } from "../components/ui/card";
 import { Button } from "../components/ui/button";
 import { Clock, AlertCircle, Info } from "lucide-react";
 import { Link } from "react-router";
+import { useCMS } from "../../hooks/useCMS";
 
 export function Services() {
+  const { data } = useCMS("services");
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
 
-  const categories = ["All", "Facial Surgery", "Body Contouring", "Reconstructive Surgery", "Advanced / Rare Cases"];
+  const categories = ["All", ...Array.from(new Set(data.services.map((s) => s.category)))];
 
-  const filteredServices = selectedCategory === "All" 
-    ? services 
-    : services.filter(s => s.category === selectedCategory);
+  const filteredServices = selectedCategory === "All"
+    ? data.services
+    : data.services.filter((s) => s.category === selectedCategory);
 
   return (
     <div className="min-h-screen bg-white pt-20">
@@ -26,12 +27,12 @@ export function Services() {
             animate={{ opacity: 1, y: 0 }}
             className="mx-auto max-w-3xl text-center"
           >
-            <p className="mb-3 text-sm font-medium uppercase tracking-[0.18em] text-[#0046FF]">Our expertise</p>
+            <p className="mb-3 text-sm font-medium uppercase tracking-[0.18em] text-[#0046FF]">{data.hero.badge}</p>
             <h1 className="text-4xl sm:text-5xl tracking-tight text-black mb-6">
-              Our Services
+              {data.hero.title}
             </h1>
             <p className="text-lg sm:text-xl leading-relaxed text-black/70">
-              Comprehensive plastic surgery solutions tailored to your unique needs and aesthetic goals.
+              {data.hero.description}
             </p>
           </motion.div>
         </div>

@@ -6,8 +6,14 @@ import { Textarea } from "../components/ui/textarea";
 import { Button } from "../components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../components/ui/select";
 import { MapPin, Phone, Mail, Clock, User } from "lucide-react";
+import { useCMS } from "../../hooks/useCMS";
+import { supabase } from "../../lib/supabase";
 
 export function Contact() {
+  const { data: contactData } = useCMS("contact");
+  const { data: settings } = useCMS("settings");
+  const { data: servicesData } = useCMS("services");
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -15,34 +21,24 @@ export function Contact() {
     service: "",
     message: "",
   });
+  const [submitting, setSubmitting] = useState(false);
+  const [submitSuccess, setSubmitSuccess] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    alert("Thank you for your inquiry! We will contact you shortly.");
+    setSubmitting(true);
+    await supabase.from("contact_inquiries").insert({
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone,
+      subject: formData.service,
+      message: formData.message,
+    });
+    setSubmitting(false);
+    setSubmitSuccess(true);
     setFormData({ name: "", email: "", phone: "", service: "", message: "" });
+    setTimeout(() => setSubmitSuccess(false), 5000);
   };
-
-  const aboutMe = {
-    name: "Dr. Thurain Moe Myint Win",
-    title: "Breast and reconstructive surgeon",
-    phone: "+95 95055880",
-    email: "thurain.moemyint1@gmail.com"
-  }
-
-  const locations = [
-    {
-      name: "Manhattan Office",
-      address: "123 Park Avenue, Suite 500, New York, NY 10001",
-      phone: "+1 (212) 555-0100",
-      email: "manhattan@drmorrison.com",
-    },
-    {
-      name: "Brooklyn Office",
-      address: "456 Atlantic Avenue, Brooklyn, NY 11217",
-      phone: "+1 (718) 555-0200",
-      email: "brooklyn@drmorrison.com",
-    },
-  ];
 
   return (
     <div className="min-h-screen bg-white pt-20">
@@ -55,12 +51,12 @@ export function Contact() {
             animate={{ opacity: 1, y: 0 }}
             className="mx-auto max-w-3xl text-center"
           >
-            <p className="mb-3 text-sm font-medium uppercase tracking-[0.18em] text-[#0046FF]">Book a consultation</p>
+            <p className="mb-3 text-sm font-medium uppercase tracking-[0.18em] text-[#0046FF]">{contactData.hero.badge}</p>
             <h1 className="text-4xl sm:text-5xl tracking-tight text-black mb-6">
-              Get in Touch
+              {contactData.hero.title}
             </h1>
             <p className="text-lg sm:text-xl leading-relaxed text-black/70">
-              Schedule a consultation or reach out with any questions. We're here to help you on your journey.
+              {contactData.hero.description}
             </p>
           </motion.div>
         </div>
@@ -78,24 +74,24 @@ export function Contact() {
                 animate={{ opacity: 1, x: 0 }}
               >
                 <Card className="border border-black/10 bg-white p-8 shadow-sm">
-                  <h2 className="mb-6 text-2xl font-semibold tracking-tight text-black">Contact Dr. Thurain Moe Myint Win</h2>
+                  <h2 className="mb-6 text-2xl font-semibold tracking-tight text-black">Contact {settings.doctor.name}</h2>
                   <div className="space-y-4">
                     <div className="flex items-start gap-3">
                       <User className="mt-1 flex-shrink-0 text-[#0046FF]" size={20} />
-                      <p className="text-black/70">{aboutMe.name}</p>
+                      <p className="text-black/70">{settings.doctor.name}</p>
                     </div>
 
                     <div className="flex items-center gap-3">
                       <Phone className="flex-shrink-0 text-[#0046FF]" size={20} />
-                      <a href={`tel:${aboutMe.phone}`} className="text-black/70 transition-colors hover:text-[#0046FF]">
-                        {aboutMe.phone}
+                      <a href={`tel:${settings.doctor.phone}`} className="text-black/70 transition-colors hover:text-[#0046FF]">
+                        {settings.doctor.phone}
                       </a>
                     </div>
 
                     <div className="flex items-center gap-3">
                       <Mail className="flex-shrink-0 text-[#0046FF]" size={20} />
-                      <a href={`mailto:${aboutMe.email}`} className="text-black/70 transition-colors hover:text-[#0046FF]">
-                        {aboutMe.email}
+                      <a href={`mailto:${settings.doctor.email}`} className="text-black/70 transition-colors hover:text-[#0046FF]">
+                        {settings.doctor.email}
                       </a>
                     </div>
                   </div>
@@ -152,12 +148,9 @@ export function Contact() {
                           <SelectValue placeholder="Select a service" />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="rhinoplasty">Rhinoplasty</SelectItem>
-                          <SelectItem value="facelift">Facelift</SelectItem>
-                          <SelectItem value="blepharoplasty">Blepharoplasty</SelectItem>
-                          <SelectItem value="breast-augmentation">Breast Augmentation</SelectItem>
-                          <SelectItem value="liposuction">Liposuction</SelectItem>
-                          <SelectItem value="tummy-tuck">Tummy Tuck</SelectItem>
+                          {servicesData.services.map((s) => (
+                            <SelectItem key={s.id} value={s.id}>{s.title}</SelectItem>
+                          ))}
                           <SelectItem value="other">Other</SelectItem>
                         </SelectContent>
                       </Select>
@@ -175,11 +168,17 @@ export function Contact() {
                       />
                     </div>
 
+                    {submitSuccess && (
+                      <p className="rounded-lg bg-green-50 py-3 text-center text-sm font-medium text-green-700">
+                        Thank you for your inquiry! We will contact you shortly.
+                      </p>
+                    )}
                     <Button
                       type="submit"
+                      disabled={submitting}
                       className="w-full rounded-full py-6 transition-all duration-300 hover:-translate-y-0.5"
                     >
-                      Send Message
+                      {submitting ? "Sending..." : "Send Message"}
                     </Button>
                   </form>
                 </Card>
@@ -206,7 +205,7 @@ export function Contact() {
                 </div>
               </Card>
 
-              {locations.map((location, index) => (
+              {contactData.locations.map((location, index) => (
                 <Card key={index} className="border border-black/10 bg-white p-8 shadow-sm">
                   <h3 className="mb-6 text-xl font-semibold tracking-tight text-black">{location.name}</h3>
                   
@@ -254,7 +253,7 @@ export function Contact() {
           </motion.div>
 
           <div className="grid md:grid-cols-2 gap-6">
-            {locations.map((location, index) => (
+            {contactData.locations.map((location, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}

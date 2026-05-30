@@ -1,10 +1,11 @@
 import { motion } from "motion/react";
-import { reviews } from "../data/content";
 import { Card } from "../components/ui/card";
 import { Star } from "lucide-react";
 import { ReviewsCarousel } from "../components/ReviewsCarousel";
+import { useCMS } from "../../hooks/useCMS";
 
 export function Reviews() {
+  const { data } = useCMS("reviews");
   return (
     <div className="min-h-screen bg-white pt-20">
       {/* Hero */}
@@ -16,12 +17,12 @@ export function Reviews() {
             animate={{ opacity: 1, y: 0 }}
             className="mx-auto max-w-3xl text-center"
           >
-            <p className="mb-3 text-sm font-medium uppercase tracking-[0.18em] text-[#0046FF]">Patient stories</p>
+            <p className="mb-3 text-sm font-medium uppercase tracking-[0.18em] text-[#0046FF]">{data.hero.badge}</p>
             <h1 className="text-4xl sm:text-5xl tracking-tight text-black mb-6">
-              Patient Reviews
+              {data.hero.title}
             </h1>
             <p className="text-lg sm:text-xl leading-relaxed text-black/70">
-              Hear from our satisfied patients about their experience and results.
+              {data.hero.description}
             </p>
           </motion.div>
         </div>
@@ -30,7 +31,7 @@ export function Reviews() {
       {/* Carousel Section */}
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <ReviewsCarousel reviews={reviews} />
+          <ReviewsCarousel reviews={data.reviews} />
         </div>
       </section>
 
@@ -51,7 +52,7 @@ export function Reviews() {
           </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {reviews.map((review, index) => (
+            {data.reviews.map((review, index) => (
               <motion.div
                 key={review.id}
                 initial={{ opacity: 0, y: 20 }}
@@ -105,7 +106,7 @@ export function Reviews() {
                 ))}
               </div>
               <p className="text-lg text-white/75">
-                Based on {reviews.length} verified patient reviews
+                Based on {data.reviews.length} verified patient reviews
               </p>
             </Card>
           </motion.div>

@@ -1,5 +1,6 @@
 import { Link } from "react-router";
 import { Facebook, Instagram, Mail, Phone } from "lucide-react";
+import { useCMS } from "../../hooks/useCMS";
 
 const quickLinks = [
   { path: "/", label: "Home" },
@@ -9,15 +10,16 @@ const quickLinks = [
 ];
 
 export function Footer() {
+  const { data: settings } = useCMS("settings");
   return (
     <footer className="bg-[#ffffff] border-t border-[#0046FF]/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           {/* Brand */}
           <div>
-            <h3 className="text-xl text-[#000000] mb-4">Dr. Thurain Moe Myint Win</h3>
+            <h3 className="text-xl text-[#000000] mb-4">{settings.doctor.name}</h3>
             <p className="text-[#0046FF] text-sm leading-relaxed">
-              Breast and reconstructive surgeon
+              {settings.footer.tagline}
             </p>
           </div>
 
@@ -41,18 +43,18 @@ export function Footer() {
           <div>
             <h4 className="text-lg text-[#000000] mb-4">Connect</h4>
             <div className="space-y-3 mb-6">
-              <a href="tel:+1234567890" className="flex items-center text-[#0046FF] hover:text-[#000000] text-sm transition-colors">
+              <a href={`tel:${settings.footer.phone}`} className="flex items-center text-[#0046FF] hover:text-[#000000] text-sm transition-colors">
                 <Phone size={16} className="mr-2" />
-                +1 (234) 567-8900
+                {settings.footer.phone}
               </a>
-              <a href="mailto:contact@drmorrison.com" className="flex items-center text-[#0046FF] hover:text-[#000000] text-sm transition-colors">
+              <a href={`mailto:${settings.footer.email}`} className="flex items-center text-[#0046FF] hover:text-[#000000] text-sm transition-colors">
                 <Mail size={16} className="mr-2" />
-                contact@drmorrison.com
+                {settings.footer.email}
               </a>
             </div>
             <div className="flex space-x-4">
               <a
-                href="https://facebook.com"
+                href={settings.social.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-[#0046FF] hover:text-[#000000] transition-colors"
@@ -61,7 +63,7 @@ export function Footer() {
                 <Facebook size={20} />
               </a>
               <a
-                href="https://instagram.com"
+                href={settings.social.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-[#0046FF] hover:text-[#000000] transition-colors"
@@ -86,7 +88,7 @@ export function Footer() {
 
         <div className="border-t border-[#0046FF]/30 pt-8">
           <p className="text-center text-[#0046FF] text-sm">
-            © {new Date().getFullYear()} Dr. Thurain Moe Myint Win. All rights reserved.
+            © {new Date().getFullYear()} {settings.doctor.name}. All rights reserved.
           </p>
         </div>
       </div>

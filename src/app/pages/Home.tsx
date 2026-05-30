@@ -1,14 +1,14 @@
 import { Link } from "react-router";
 import { motion } from "motion/react";
 import { ArrowRight, Award, Users, Clock } from "lucide-react";
-import { services, blogs, reviews, caseHighlights } from "../data/content";
 import { Button } from "../components/ui/button";
 import { Card } from "../components/ui/card";
 import { ReviewsCarousel } from "../components/ReviewsCarousel";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../components/ui/accordion";
 import { Input } from "../components/ui/input";
 import { Textarea } from "../components/ui/textarea";
 import { useState } from "react";
+import { useCMS } from "../../hooks/useCMS";
+import { supabase } from "../../lib/supabase";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
@@ -17,12 +17,26 @@ const fadeInUp = {
 };
 
 export function Home() {
-  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const { data: homeData } = useCMS("home");
+  const { data: servicesData } = useCMS("services");
+  const { data: reviewsData } = useCMS("reviews");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [submitting, setSubmitting] = useState(false);
+  const [submitSuccess, setSubmitSuccess] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    alert("Thank you for your inquiry. We will contact you shortly!");
+    setSubmitting(true);
+    await supabase.from("contact_inquiries").insert({
+      name: formData.name,
+      email: formData.email,
+      message: formData.message,
+    });
+    setSubmitting(false);
+    setSubmitSuccess(true);
     setFormData({ name: "", email: "", message: "" });
+    setTimeout(() => setSubmitSuccess(false), 5000);
   };
 
   return (
@@ -39,32 +53,32 @@ export function Home() {
           <div className="grid items-center gap-12 lg:grid-cols-2">
             <motion.div {...fadeInUp} className="max-w-2xl">
               <p className="mb-4 text-sm font-medium uppercase tracking-[0.22em] text-[#0046FF]">
-                Premium breast and reconstructive surgery
+                {homeData.hero.badge}
               </p>
               <h1 className="mb-6 text-4xl leading-[1.05] tracking-tight text-black sm:text-5xl">
-                Dr. Thurain Moe Myint Win
+                {homeData.hero.title}
               </h1>
               <p className="mb-6 max-w-xl text-lg leading-relaxed text-black/75 sm:text-xl">
-                Breast and reconstructive surgeon
+                {homeData.hero.subtitle}
               </p>
              
               <div className="flex flex-wrap gap-4">
                 <Link to="/contact">
                   <Button className="rounded-full px-8 py-6 text-base shadow-[0_14px_30px_rgba(0,70,255,0.24)] transition-all duration-300 hover:-translate-y-0.5">
-                    Book Consultation
+                    {homeData.hero.cta_primary}
                     <ArrowRight className="ml-2" size={20} />
                   </Button>
                 </Link>
                 <Link to="/services">
                   <Button variant="outline" className="rounded-full px-8 py-6 text-base transition-all duration-300 hover:-translate-y-0.5">
-                    View Services
+                    {homeData.hero.cta_secondary}
                   </Button>
                 </Link>
               </div>
               <div className="mt-8 flex flex-wrap gap-3 text-sm text-black/60">
-                <span className="rounded-full border border-black/10 bg-white px-4 py-2 shadow-sm">15+ years experience</span>
-                <span className="rounded-full border border-black/10 bg-white px-4 py-2 shadow-sm">Natural-looking results</span>
-                <span className="rounded-full border border-black/10 bg-white px-4 py-2 shadow-sm">Patient-centered care</span>
+                {homeData.hero.trust_badges.map((badge, i) => (
+                  <span key={i} className="rounded-full border border-black/10 bg-white px-4 py-2 shadow-sm">{badge}</span>
+                ))}
               </div>
             </motion.div>
 
@@ -76,8 +90,8 @@ export function Home() {
             >
               <div className="relative overflow-hidden rounded-[2rem] border border-black/10 bg-white p-2 shadow-[0_24px_80px_rgba(0,0,0,0.12)]">
                 <img
-                  src="https://i.pinimg.com/736x/7d/be/c0/7dbec043a172b1706712bcebb5cb816e.jpg"
-                  alt="Dr. Thurain Moe Myint Win"
+                  src={homeData.hero.image || "https://i.pinimg.com/736x/7d/be/c0/7dbec043a172b1706712bcebb5cb816e.jpg"}
+                  alt={homeData.hero.title}
                   className="h-[520px] w-full rounded-[1.5rem] object-cover sm:h-[620px]"
                 />
                 <div className="absolute inset-x-6 bottom-6 rounded-2xl border border-white/20 bg-black/85 p-4 text-white backdrop-blur-sm">
@@ -181,7 +195,7 @@ export function Home() {
           </motion.div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-            {services.slice(0, 6).map((service, index) => (
+            {servicesData.services.slice(0, 6).map((service, index) => (
               <motion.div
                 key={service.id}
                 initial={{ opacity: 0, y: 20 }}
@@ -233,7 +247,7 @@ export function Home() {
           </motion.div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {caseHighlights.map((highlight, index) => (
+            {homeData.case_highlights.map((highlight, index) => (
               <motion.div
                 key={highlight.id}
                 initial={{ opacity: 0, y: 20 }}
@@ -258,7 +272,7 @@ export function Home() {
       </section>
 
       {/* Blog Preview */}
-      <section className="py-24 bg-black/10 text-white">
+      {/* <section className="py-24 bg-black/10 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -312,7 +326,7 @@ export function Home() {
             </Link>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Reviews Section */}
       <section className="py-24 bg-white">
@@ -332,7 +346,7 @@ export function Home() {
             </p>
           </motion.div>
 
-          <ReviewsCarousel reviews={reviews} />
+          <ReviewsCarousel reviews={reviewsData.reviews} />
 
           <div className="text-center mt-20">
             <Link to="/reviews">
@@ -441,9 +455,14 @@ export function Home() {
               rows={6}
               className=""
             />
+            {submitSuccess && (
+              <p className="rounded-lg bg-green-50 py-3 text-center text-sm font-medium text-green-700">
+                Thank you! We'll be in touch shortly.
+              </p>
+            )}
             <div className="text-center">
-              <Button type="submit" className="rounded-full px-8 transition-all duration-300 hover:-translate-y-0.5">
-                Send Message
+              <Button type="submit" disabled={submitting} className="rounded-full px-8 transition-all duration-300 hover:-translate-y-0.5">
+                {submitting ? "Sending..." : "Send Message"}
               </Button>
             </div>
           </motion.form>
