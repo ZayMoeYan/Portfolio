@@ -1,12 +1,12 @@
 import { Outlet } from "react-router";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
-import { ScrollToTop } from "./ScrollToTop";
+import ScrollToTopButton from "./ScrollToTopButton";
 
 export function Root() {
   return (
     <div className="min-h-screen bg-[#ffffff]">
-      <ScrollToTop />
+      <ScrollToTopButton />
       <Header />
       <main>
         <Outlet />
