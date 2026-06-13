@@ -1,14 +1,16 @@
 import { Link } from "react-router";
 import { motion } from "motion/react";
-import { ArrowRight, Award, Users, Clock } from "lucide-react";
+import { ArrowRight, Award, Users, Clock, ImageDownIcon, X } from "lucide-react";
 import { Button } from "../components/ui/button";
 import { Card } from "../components/ui/card";
 import { ReviewsCarousel } from "../components/ReviewsCarousel";
 import { Input } from "../components/ui/input";
 import { Textarea } from "../components/ui/textarea";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useCMS } from "../../hooks/useCMS";
 import { supabase } from "../../lib/supabase";
+import data from '../../data/certificates.json';
+import { ImageWithFallback } from "../components/imageFallBack/ImageWithFallback";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
@@ -24,6 +26,18 @@ export function Home() {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
   const [submitting, setSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [selectedCertificate, setSelectedCertificate] = useState<{ imageUrl: string; title: string } | null>(null);
+
+  useEffect(() => {
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setSelectedCertificate(null);
+      }
+    };
+
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -44,10 +58,6 @@ export function Home() {
       {/* Hero Section */}
       <section className="relative overflow-hidden border-b border-black/10 bg-white">
         <div className="absolute inset-x-0 top-0 h-1 bg-[#0046FF]" />
-        <div className="absolute inset-0 opacity-100">
-          <div className="absolute top-12 left-0 h-72 w-72 -translate-x-1/3 rounded-full bg-black/5 blur-3xl" />
-          <div className="absolute bottom-0 right-0 h-96 w-96 translate-x-1/4 rounded-full bg-[#0046FF]/10 blur-3xl" />
-        </div>
         
         <div className="relative z-10 mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-24">
           <div className="grid items-center gap-12 lg:grid-cols-2">
@@ -228,7 +238,7 @@ export function Home() {
         </div>
       </section>
 
-      {/* Case Highlights */}
+      {/* Certificates Section */}
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -237,99 +247,81 @@ export function Home() {
             viewport={{ once: true }}
             className="mb-12 text-center"
           >
-            <p className="mb-3 text-sm font-medium uppercase tracking-[0.18em] text-[#0046FF]">Selected case studies</p>
+            <p className="mb-3 text-sm font-medium uppercase tracking-[0.18em] text-[#0046FF]">Certificates</p>
             <h2 className="mb-4 text-3xl tracking-tight text-black sm:text-4xl">
-              Case Highlights
+              Certificates
             </h2>
             <p className="mx-auto max-w-2xl text-black/70">
-              Successfully completed complex procedures with exceptional outcomes.
+              Dr. Thurain Moe Myint Win's commitment to excellence is reflected in his extensive certifications and affiliations with leading medical organizations.
             </p>
           </motion.div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {homeData.case_highlights.map((highlight, index) => (
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {data.certificates.map((cert: any, index: number) => (
               <motion.div
-                key={highlight.id}
+                key={index}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
+                className="group relative cursor-pointer overflow-hidden rounded-2xl border border-black/10 bg-white p-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl"
+                onClick={() =>
+                  setSelectedCertificate({
+                    imageUrl: cert.image_url,
+                    title: `Certificate ${index + 1}`,
+                  })
+                }
               >
-                <Card className="h-full border border-black/10 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl">
-                  <div className="mb-4 flex aspect-video items-center justify-center rounded-2xl border border-black/10 bg-black/[0.03]">
-                    <span className="text-sm font-medium uppercase tracking-[0.15em] text-[#0046FF]">Case Study</span>
+                <ImageWithFallback
+                  src={cert.image_url}
+                  className="w-full h-55 rounded-xl transition-transform duration-500 group-hover:scale-[1.03]"
+                />
+                <div className="pointer-events-none absolute inset-4 flex items-center justify-center rounded-xl bg-black/0 opacity-0 transition-all duration-300 group-hover:bg-black/45 group-hover:opacity-100">
+                  <div className="inline-flex items-center gap-2 rounded-full border border-white/40 bg-white/15 px-4 py-2 text-sm font-medium tracking-wide text-white backdrop-blur-md">
+                    <ImageDownIcon size={16} />
+                    View Image
                   </div>
-                  <div className="mb-2 text-sm font-medium uppercase tracking-[0.15em] text-[#0046FF]">{highlight.category}</div>
-                  <h3 className="mb-2 text-lg font-semibold tracking-tight text-black">{highlight.title}</h3>
-                  <p className="text-sm leading-relaxed text-black/70">
-                    {highlight.description}
-                  </p>
-                </Card>
+                </div>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Blog Preview */}
-      {/* <section className="py-24 bg-black/10 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mb-12 text-center"
+      {selectedCertificate && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 px-4 py-8 backdrop-blur-sm"
+          onClick={() => setSelectedCertificate(null)}
+          role="dialog"
+          aria-modal="true"
+          aria-label={selectedCertificate.title}
+        >
+          <button
+            type="button"
+            onClick={() => setSelectedCertificate(null)}
+            className="absolute right-4 top-4 rounded-full border border-white/30 bg-black/40 p-2 text-white transition-colors hover:bg-black/60"
+            aria-label="Close image preview"
           >
-            <p className="mb-3 text-sm font-medium uppercase tracking-[0.18em] text-[#0046FF]">Latest insights</p>
-            <h2 className="mb-4 text-3xl tracking-tight text-black sm:text-4xl">
-              Latest Insights
-            </h2>
-            <p className="mx-auto max-w-2xl text-black/75">
-              Expert advice and educational content about plastic surgery.
-            </p>
-          </motion.div>
+            <X size={20} />
+          </button>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-            {blogs.slice(0, 3).map((blog, index) => (
-              <motion.div
-                key={blog.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-              >
-                <Link to={`/blogs/${blog.id}`}>
-                  <Card className="h-full border border-white/10 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl">
-                    <div className="mb-3 flex items-center gap-2 text-sm font-medium text-[#0046FF]">
-                      <span>{blog.category}</span>
-                      <span>•</span>
-                      <span>{blog.readTime}</span>
-                    </div>
-                    <h3 className="mb-3 text-xl font-semibold tracking-tight text-black">{blog.title}</h3>
-                    <p className="mb-4 text-sm leading-relaxed text-black/70">
-                      {blog.excerpt}
-                    </p>
-                    <div className="inline-flex items-center text-sm text-[#0046FF] transition-colors hover:text-black">
-                      Read More <ArrowRight size={16} className="ml-1" />
-                    </div>
-                  </Card>
-                </Link>
-              </motion.div>
-            ))}
-          </div>
-
-          <div className="text-center">
-            <Link to="/blogs">
-              <Button variant="outline" className="rounded-full transition-all duration-300 hover:-translate-y-0.5">
-                View All Articles
-              </Button>
-            </Link>
+          <div
+            className="relative w-full max-w-6xl overflow-hidden rounded-2xl border border-white/20 bg-black/40 shadow-[0_24px_70px_rgba(0,0,0,0.55)]"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <ImageWithFallback
+              src={selectedCertificate.imageUrl}
+              className="max-h-[82vh] w-full object-contain"
+            />
+            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent px-4 py-3 text-center text-sm font-medium tracking-wide text-white sm:text-base">
+              {selectedCertificate.title}
+            </div>
           </div>
         </div>
-      </section> */}
+      )}
 
       {/* Reviews Section */}
-      <section className="py-24 bg-white">
+      <section className="py-24 bg-black/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -358,55 +350,8 @@ export function Home() {
         </div>
       </section>
 
-      {/* FAQs Preview */}
-      {/* <section className="py-24 bg-black/10 text-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mb-12 text-center"
-          >
-            <p className="mb-3 text-sm font-medium uppercase tracking-[0.18em] text-[#0046FF]">FAQ</p>
-            <h2 className="mb-4 text-3xl tracking-tight text-black sm:text-4xl">
-              Frequently Asked Questions
-            </h2>
-            <p className="text-black/75">
-              Quick answers to common questions about plastic surgery.
-            </p>
-          </motion.div>
-
-          <Accordion type="single" collapsible className="space-y-4">
-            {[0, 1, 2, 3].map((index) => (
-              <AccordionItem
-                key={index}
-                value={`item-${index}`}
-                className="rounded-3xl"
-              >
-                <AccordionTrigger className="text-black hover:text-[#0046FF] transition-colors">
-                
-                  {window.faqs?.[index]?.question || "Loading..."}
-                </AccordionTrigger>
-                <AccordionContent className="text-black/70 leading-relaxed">
-                  
-                  {window.faqs?.[index]?.answer || ""}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
-
-          <div className="text-center mt-8">
-            <Link to="/faqs">
-              <Button variant="outline" className="rounded-full transition-all duration-300 hover:-translate-y-0.5">
-                View All FAQs
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </section> */}
-
       {/* Contact Form */}
-      <section className="py-24 bg-black/10">
+      <section className="py-24 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -471,26 +416,3 @@ export function Home() {
     </div>
   );
 }
-
-// Make FAQs available for preview
-// if (typeof window !== "undefined") {
-//   // @ts-ignore
-//   window.faqs = [
-//     {
-//       question: "How do I know if I'm a good candidate for plastic surgery?",
-//       answer: "Good candidates are in good overall health, have realistic expectations, and are motivated to improve their appearance. During your consultation, we'll evaluate your medical history, discuss your goals, and determine if surgery is right for you.",
-//     },
-//     {
-//       question: "How long does surgery typically take?",
-//       answer: "Surgery duration varies by procedure. Simple procedures like eyelid surgery may take 1-2 hours, while more complex surgeries like a facelift or tummy tuck can take 3-5 hours.",
-//     },
-//     {
-//       question: "How long is the recovery period?",
-//       answer: "Recovery varies by procedure. Minor procedures may require only a few days off work, while major surgeries might need 2-3 weeks. We provide detailed recovery instructions and timeline expectations.",
-//     },
-//     {
-//       question: "When will I see my final results?",
-//       answer: "Initial results are visible once swelling subsides, usually within a few weeks. However, final results can take 6-12 months as tissues settle and scars mature.",
-//     },
-//   ];
-// }

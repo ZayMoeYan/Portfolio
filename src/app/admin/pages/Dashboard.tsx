@@ -5,11 +5,11 @@ import { Card } from "../../components/ui/card";
 import { FileText, Image, Mail, Settings, ArrowRight } from "lucide-react";
 
 const pages = [
-  { label: "Home", path: "/admin/pages/home", description: "Hero, badges, case highlights" },
-  { label: "About", path: "/admin/pages/about", description: "Bio, education, timeline, skills" },
-  { label: "Services", path: "/admin/pages/services", description: "All surgery services" },
-  { label: "Reviews", path: "/admin/pages/reviews", description: "Patient reviews" },
-  { label: "Contact", path: "/admin/pages/contact", description: "Contact info & locations" },
+  { label: "Home", path: "/admin/pages/home", description: "Hero, badges, case highlights", icon: FileText },
+  { label: "About", path: "/admin/pages/about", description: "Bio, education, timeline, skills", icon: Image },
+  { label: "Services", path: "/admin/pages/services", description: "All surgery services", icon: Settings },
+  { label: "Reviews", path: "/admin/pages/reviews", description: "Patient reviews", icon: Mail },
+  { label: "Contact", path: "/admin/pages/contact", description: "Contact info & locations", icon: ArrowRight },
 ];
 
 export function Dashboard() {
@@ -62,9 +62,12 @@ export function Dashboard() {
           {pages.map((page) => (
             <Link key={page.path} to={page.path}>
               <Card className="group flex items-center justify-between border border-gray-200 bg-white p-5 shadow-sm transition-all hover:border-[#0046FF] hover:shadow-md">
-                <div>
-                  <p className="font-medium text-gray-900">{page.label}</p>
-                  <p className="mt-0.5 text-xs text-gray-500">{page.description}</p>
+                <div className="flex items-center gap-3">
+                  {page.icon && <page.icon className="text-[#0046FF]" size={20} />}
+                  <div>
+                    <p className="font-medium text-gray-900">{page.label}</p>
+                    <p className="mt-0.5 text-xs text-gray-500">{page.description}</p>
+                  </div>
                 </div>
                 <ArrowRight
                   className="text-gray-300 transition-colors group-hover:text-[#0046FF]"

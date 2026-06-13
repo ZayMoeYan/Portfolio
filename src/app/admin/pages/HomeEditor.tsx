@@ -50,28 +50,28 @@ export function HomeEditor() {
       hero: { ...prev.hero, trust_badges: prev.hero.trust_badges.filter((_, i) => i !== index) },
     }));
 
-  const updateHighlight = (index: number, field: string, value: string) => {
-    setData((prev) => {
-      const highlights = [...prev.case_highlights];
-      highlights[index] = { ...highlights[index], [field]: value };
-      return { ...prev, case_highlights: highlights };
-    });
-  };
+  // const updateHighlight = (index: number, field: string, value: string) => {
+  //   setData((prev) => {
+  //     const highlights = [...prev.case_highlights];
+  //     highlights[index] = { ...highlights[index], [field]: value };
+  //     return { ...prev, case_highlights: highlights };
+  //   });
+  // };
 
-  const addHighlight = () =>
-    setData((prev) => ({
-      ...prev,
-      case_highlights: [
-        ...prev.case_highlights,
-        { id: Date.now(), title: "", description: "", category: "" },
-      ],
-    }));
+  // const addHighlight = () =>
+  //   setData((prev) => ({
+  //     ...prev,
+  //     case_highlights: [
+  //       ...prev.case_highlights,
+  //       { id: Date.now(), title: "", description: "", category: "" },
+  //     ],
+  //   }));
 
-  const removeHighlight = (index: number) =>
-    setData((prev) => ({
-      ...prev,
-      case_highlights: prev.case_highlights.filter((_, i) => i !== index),
-    }));
+  // const removeHighlight = (index: number) =>
+  //   setData((prev) => ({
+  //     ...prev,
+  //     case_highlights: prev.case_highlights.filter((_, i) => i !== index),
+  //   }));
 
   if (loading) {
     return (
@@ -162,7 +162,7 @@ export function HomeEditor() {
       </Card>
 
       {/* Case Highlights */}
-      <Card className="border border-gray-200 bg-white p-6 shadow-sm">
+      {/* <Card className="border border-gray-200 bg-white p-6 shadow-sm">
         <div className="mb-4 flex items-center justify-between">
           <h3 className="text-base font-semibold text-gray-900">Case Highlights</h3>
           <Button type="button" variant="outline" size="sm" onClick={addHighlight}>
@@ -205,7 +205,7 @@ export function HomeEditor() {
             </div>
           ))}
         </div>
-      </Card>
+      </Card> */}
 
       <Button onClick={handleSave} disabled={saving} className="w-full sm:w-auto">
         {saving ? (

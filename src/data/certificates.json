@@ -1,0 +1,16 @@
+{
+    "certificates": [
+        {
+            "image_url": "/assets/certificates/kccs.jpg"
+        },
+        {
+            "image_url": "/assets/certificates/kccsm.jpg"
+        },
+        {
+            "image_url": "/assets/certificates/taap.jpg"
+        },
+        {
+            "image_url": "/assets/certificates/ttatsm.jpg"
+        }
+    ]
+}

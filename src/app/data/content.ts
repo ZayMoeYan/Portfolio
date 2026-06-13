@@ -262,59 +262,6 @@ export const reviews = [
   },
 ];
 
-export const faqs = [
-  {
-    category: "General",
-    question: "How do I know if I'm a good candidate for plastic surgery?",
-    answer: "Good candidates are in good overall health, have realistic expectations, and are motivated to improve their appearance. During your consultation, we'll evaluate your medical history, discuss your goals, and determine if surgery is right for you.",
-  },
-  {
-    category: "General",
-    question: "Are consultations free?",
-    answer: "We offer complimentary initial consultations for cosmetic procedures. This allows us to meet, discuss your goals, and develop a personalized treatment plan without any financial commitment.",
-  },
-  {
-    category: "Surgery",
-    question: "How long does surgery typically take?",
-    answer: "Surgery duration varies by procedure. Simple procedures like eyelid surgery may take 1-2 hours, while more complex surgeries like a facelift or tummy tuck can take 3-5 hours. We'll provide specific timing during your consultation.",
-  },
-  {
-    category: "Surgery",
-    question: "What type of anesthesia is used?",
-    answer: "Depending on the procedure, we use local anesthesia with sedation or general anesthesia. Your safety is our priority, and board-certified anesthesiologists administer all anesthesia in our accredited surgical facility.",
-  },
-  {
-    category: "Recovery",
-    question: "How long is the recovery period?",
-    answer: "Recovery varies by procedure. Minor procedures may require only a few days off work, while major surgeries might need 2-3 weeks. We provide detailed recovery instructions and timeline expectations for your specific procedure.",
-  },
-  {
-    category: "Recovery",
-    question: "Will I have visible scars?",
-    answer: "All surgery involves some scarring, but we use advanced techniques to minimize and hide incisions in natural creases and contours. Most scars fade significantly over time and are barely noticeable when fully healed.",
-  },
-  {
-    category: "Recovery",
-    question: "When will I see my final results?",
-    answer: "Initial results are visible once swelling subsides, usually within a few weeks. However, final results can take 6-12 months as tissues settle and scars mature. We'll monitor your progress through follow-up appointments.",
-  },
-  {
-    category: "Pricing",
-    question: "How much does plastic surgery cost?",
-    answer: "Costs vary significantly based on the procedure, complexity, and individual needs. During your consultation, we provide a detailed cost breakdown including surgeon fees, facility fees, and anesthesia. We also offer financing options to make procedures more accessible.",
-  },
-  {
-    category: "Pricing",
-    question: "Do you accept insurance?",
-    answer: "Cosmetic procedures are typically not covered by insurance. However, reconstructive procedures and those addressing functional issues may be covered. We'll help you navigate insurance coverage if applicable.",
-  },
-  {
-    category: "Pricing",
-    question: "Do you offer financing options?",
-    answer: "Yes, we partner with several healthcare financing companies that offer flexible payment plans with competitive rates. Our staff can help you explore options that fit your budget.",
-  },
-];
-
 export const caseHighlights = [
   {
     id: 1,

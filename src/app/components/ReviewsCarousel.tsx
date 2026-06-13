@@ -134,6 +134,8 @@ export function ReviewsCarousel({ reviews }: ReviewsCarouselProps) {
           z-10
           hover:scale-110
           transition-all
+          hidden
+          sm:block
         "
         aria-label="Previous"
       >
@@ -156,6 +158,8 @@ export function ReviewsCarousel({ reviews }: ReviewsCarouselProps) {
           z-10
           hover:scale-110
           transition-all
+          hidden
+          sm:block
         "
         aria-label="Next"
       >
